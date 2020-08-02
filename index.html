@@ -30,25 +30,46 @@
         $("#currentDay").text(currentDate);
 
         // setup our working hours
-        const workingHours = [9, 10, 11, 12, 1, 2, 3, 4, 5];
+        const workingHours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
         // display empty rows please
         workingHours.forEach(function(hour) {
-            const rowEl = $("<div class='row time-block past'>");
-            const hourCol = $("<div class='col-1 hour'>");
-            const descriptionCol = $("<div class='col-10 description textarea'>");
+            const rowEl = $("<div class='row time-block'>");
+            const hourCol = $("<div class='col-1 hour py-4'>");
+            const inputCol = $("<textarea class='col-10 description'>");
+
+            console.log(hour + " : " + (moment().format('H') - 12));
+            console.log('past');
+            // remember to remove the -12 for daytime usage
+            if (hour < (moment().format('H') - 12)) {
+                inputCol.addClass('past');
+            } else if (hour == (moment().format('H') - 12)) {
+                inputCol.addClass('present');
+            } else if (hour > (moment().format('H') - 12)) {
+                inputCol.addClass('future');
+            } else {
+                console.log("ERROR");
+            }
+
+
+
             const saveBtn = $("<button class='col-1 saveBtn'><i class='fas fa-save'></i></button>");
             rowEl.append(hourCol);
-            if (hour === 9 | hour === 10 | hour === 11) {
+            if (hour < 12) {
                 time = hour + " AM";
-            } else {
+            } else if (hour == 12) {
                 time = hour + " PM";
+            } else {
+                time = (hour - 12) + " PM";
             }
+
             hourCol.text(time);
-            rowEl.append(descriptionCol);
+            rowEl.append(inputCol);
             rowEl.append(saveBtn);
             $(".container").append(rowEl);
         });
+
+        // lets get some inputs
     </script>
 </body>
 
