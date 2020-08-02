@@ -25,10 +25,30 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script>
+        // display current date on page
         var currentDate = moment().format("MMMM Do YYYY");
         $("#currentDay").text(currentDate);
-        var hourRow = $("<div");
-        hourRow.addClass("row");
+
+        // setup our working hours
+        const workingHours = [9, 10, 11, 12, 1, 2, 3, 4, 5];
+
+        // display empty rows please
+        workingHours.forEach(function(hour) {
+            const rowEl = $("<div class='row time-block past'>");
+            const hourCol = $("<div class='col-1 hour'>");
+            const descriptionCol = $("<div class='col-10 description textarea'>");
+            const saveBtn = $("<button class='col-1 saveBtn'><i class='fas fa-save'></i></button>");
+            rowEl.append(hourCol);
+            if (hour === 9 | hour === 10 | hour === 11) {
+                time = hour + " AM";
+            } else {
+                time = hour + " PM";
+            }
+            hourCol.text(time);
+            rowEl.append(descriptionCol);
+            rowEl.append(saveBtn);
+            $(".container").append(rowEl);
+        });
     </script>
 </body>
 
