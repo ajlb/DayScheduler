@@ -1,6 +1,6 @@
 # DayScheduler
 ![Screenshot of index.html](./assets/images/WorkDayScheduler.png)
-### https://n-lambert.github.io/dayScheduler/ ###
+### https://n-lambert.github.io/DayScheduler/ ###
 
 ## Table Of Contents ##
 
